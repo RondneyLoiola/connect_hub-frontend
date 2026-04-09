@@ -52,7 +52,7 @@ function PostDetails(){
         } catch (error) {
             console.error(error);
         } finally {
-            setLoading(true);
+            setLoading(false);
         }
     }
 
@@ -96,13 +96,18 @@ function PostDetails(){
                                     {post.description}
                                 </p>
 
-                                {/* Likes and Date */}
-                                <div className="flex items-center justify-between pt-2 border-t border-gray-500">
-                                    <span className="text-gray-400 text-sm">
-                                        {post.likes_count} Curtidas
-                                    </span>
+                                {/* Likes, Comments and Date */}
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-2 border-t border-gray-500 gap-2 sm:gap-0">
+                                    <div className="flex flex-col sm:flex-row gap-4">
+                                        <span className="text-gray-400 text-sm">
+                                            {post.likes_count} Curtidas
+                                        </span>
+                                        <span className="text-gray-400 text-sm">
+                                            {post.comments_count || 0} Comentários
+                                        </span>
+                                    </div>
                                     <span className="text-gray-400 text-xs">
-                                        {formatterData(post.created_at)}
+                                        {formatterData(post.createdAt)}
                                     </span>
                                 </div>
                             </div>
@@ -118,7 +123,7 @@ function PostDetails(){
                             <div className="space-y-4 mb-6 max-h-96 overflow-y-auto">
                                 {comments.length > 0 ? (
                                     comments.map((comment) => (
-                                        <div key={comment.id} className="border-b border-gray-600 pb-3">
+                                        <div key={comment._id} className="border-b border-gray-600 pb-3">
                                             <div className="flex items-center gap-2 mb-2">
                                                 <div className="w-8 h-8 rounded-full bg-linear-to-br from-pink-500 via-red-500 to-yellow-500 p-0.5">
                                                     <div className="w-full h-full rounded-full bg-violet-500 text-white flex items-center justify-center text-xs font-bold">

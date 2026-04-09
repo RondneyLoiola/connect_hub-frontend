@@ -133,7 +133,7 @@ function Home() {
                     >
                       <MessageCircle className="w-5 h-5" />
                       <span className="text-sm font-medium relative top-0.5">
-                        {item.comments.length}
+{item.comments_count || 0}
                       </span>
                     </button>
                     <button
@@ -142,7 +142,7 @@ function Home() {
                     ></button>
                   </div>
                   <span className="text-gray-400 text-xs">
-                    {formatterData(item.created_at)}
+                    {formatterData(item.createdAt)}
                   </span>
                 </div>
               </div>

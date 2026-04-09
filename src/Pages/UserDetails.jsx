@@ -10,9 +10,9 @@ function UserDetails() {
 
   useEffect(() => {
     const getPosts = async () => {
-      if (user?.id) {
+      if (user?._id) {
         try {
-          const response = await api.get(`/users/${user.id}/posts`);
+          const response = await api.get(`/users/${user._id}/posts`);
           setPosts(response.data.posts);
         } catch (error) {
           console.error('Failed to fetch posts:', error);
@@ -21,7 +21,7 @@ function UserDetails() {
     };
 
     getPosts();
-  }, [user?.id]);
+  }, [user?._id]);
 
   if (!user) {
     return (
@@ -61,12 +61,12 @@ function UserDetails() {
               posts.map((post) => (
                 <div
                   className="relative aspect-square group cursor-pointer overflow-hidden"
-                  key={post.id}
-                  onClick={() => navigate(`/buscar/usuario/post/${post.id}`, { state: { post: post } })}
+                  key={post._id}
+                  onClick={() => navigate(`/buscar/usuario/post/${post._id}`, { state: { post: post } })}
                 >
                   <img
                     src={post.url}
-                    alt={post.id}
+                    alt={post._id}
                     className="border-2 rounded-sm border-gray-600 md:w-[300px] w-[250px] h-full object-contain"
                   />
                 </div>

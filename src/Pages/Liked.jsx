@@ -47,7 +47,7 @@ function Liked() {
                     <p className="text-gray-400">Você ainda não curtiu nenhum post.</p>
                 ) : (
                     likedPosts.map((item) => (
-                        <div key={item.id} className="group">
+                        <div key={item._id} className="group">
                             <div 
                             className="md:w-[450px] w-[350px] bg-[#1F2937] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1">
                                 {/* Imagem do Post */}
@@ -91,7 +91,7 @@ function Liked() {
                                         <div className="flex gap-4 mt-4">
                                             <button
                                                 type="button"
-                                                onClick={() => handleLike(item.id)}
+                                                onClick={() => handleLike(item._id)}
                                                 className="flex items-center gap-1.5 text-blue-400 hover:text-blue-600 transition-colors"
                                             >
                                                 <ThumbsUp className="w-5 h-5" />
@@ -102,7 +102,7 @@ function Liked() {
                                             <div className="flex items-center gap-1.5 text-gray-500" onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })}>
                                                 <MessageCircle className="w-5 h-5 hover:text-blue-400" />
                                                 <span className="text-sm font-medium relative top-0.5">
-                                                    {item.comments?.length || 0}
+{item.comments_count || 0}
                                                 </span>
                                             </div>
                                         </div>

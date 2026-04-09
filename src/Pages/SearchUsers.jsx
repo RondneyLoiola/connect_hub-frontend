@@ -56,13 +56,13 @@ function SearchUsers() {
 
           {filteredUsers.map((user) => (
             <div
-              key={user.id}
+              key={user._id}
               className="relative top-25 flex items-center text-white cursor-pointer"
             >
               <div
                 className="flex flex-col items-start p-2 bg-[#111827] rounded-xl md:w-[500px] w-[300px]"
                 onClick={() =>
-                  navigate(`/buscar/usuario/${user.id}`, {
+                  navigate(`/buscar/usuario/${user._id}`, {
                     state: { user: user },
                   })
                 }

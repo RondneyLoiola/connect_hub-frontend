@@ -24,8 +24,8 @@ const AppRoutes = () => {
             <Route path="/meu-perfil/curtidos" element={<Liked />} />
             <Route path="/criar-post" element={<NewPost />} />
             <Route path="/buscar" element={<SearchUsers />} />
-            <Route path="/buscar/usuario/:id" element={<UserDetails />} />
-            <Route path="/buscar/usuario/post/:id" element={<PostDetails />} />
+            <Route path="/buscar/usuario/:_id" element={<UserDetails />} />
+            <Route path="/buscar/usuario/post/:_id" element={<PostDetails />} />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />
