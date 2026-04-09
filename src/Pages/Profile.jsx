@@ -8,6 +8,16 @@ function Profile() {
   const { userInfo, logout } = useUser();
   const navigate = useNavigate();
 
+  if (!userInfo.user?.user) {
+    return (
+      <section className="height flex items-center justify-center p-12 mt-4">
+        <div className="w-2xl rounded-2xl justify-center md:p-12 p-6 bg-[#111827] text-white text-center">
+          <p>Loading profile...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="height flex items-center justify-center p-12 mt-4">
       <div className="w-2xl rounded-2xl justify-center md:p-12 p-6 bg-[#111827]">
@@ -31,7 +41,7 @@ function Profile() {
           <Input
             label="Nome"
             icon={<User className="md:w-5 w-5 text-[#6B7280]" />}
-            value={userInfo.user.user.name}
+            value={userInfo.user.user.name || ''}
             readOnly
             fullWidth={true}
           />
@@ -39,7 +49,7 @@ function Profile() {
           <Input
             label="Email"
             icon={<Mail className="md:w-5 w-5 text-[#6B7280]" />}
-            value={userInfo.user.user.email}
+            value={userInfo.user.user.email || ''}
             readOnly
             fullWidth={true}
           />
@@ -47,7 +57,7 @@ function Profile() {
           <Input
             label="Nickname"
             icon={<Crown className="md:w-5 w-5 text-[#6B7280]" />}
-            value={userInfo.user.user.nickname}
+            value={userInfo.user.user.nickname || ''}
             readOnly
             fullWidth={true}
           />
@@ -76,3 +86,4 @@ function Profile() {
 }
 
 export default Profile;
+

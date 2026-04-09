@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 function Home() {
   const navigate = useNavigate()
   const [posts, setPosts] = useState([]);
-  const [likedPosts, setLikedPosts] = useState(new Set());
+  const [likedPosts, setLikedPosts ] = useState(new Set());
   const { userInfo } = useUser();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ function Home() {
 
             >
               {/* Imagem do Post */}
-              <div className="relative overflow-hidden h-[400px] bg-gray-900/60" onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })}>
+              <div className="relative overflow-hidden h-[400px] bg-gray-900/60" onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })} >
                 <img
                   className="w-full h-full  object-contain transition-transform duration-500 group-hover:scale-105"
                   src={item.url}
@@ -84,29 +84,29 @@ function Home() {
               </div>
 
               {/* Conteúdo do Post */}
-              <div className="p-5 flex flex-col gap-">
+              <div className="p-5 flex flex-col gap- ">
                 {/* Header - Autor */}
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-linear-to-br from-pink-500 via-red-500 to-yellow-500 p-0.5">
                     <div className={`w-full h-full rounded-full bg-violet-500 text-white flex items-center justify-center text-sm font-bold`}>
-                      {item.author.name.charAt(0)}
+                      {item.author?.name?.charAt(0) || ''}
                     </div>
                   </div>
                   <div className="flex flex-col">
                     <div className="flex items-center gap-1.5">
                       <p className="font-semibold text-white text-sm">
-                        {item.author.name}
+                        {item.author?.name || 'Unknown'}
                       </p>
                     </div>
                     <span className="text-gray-400 text-xs">
-                      @{item.author.nickname}
+                      @{item.author?.nickname || ''}
                     </span>
                   </div>
                 </div>
 
                 {/* Descrição */}
                 <p className="text-white mt-4 mb-2 text-sm leading-relaxed">
-                  {item.description}
+                  {item.description || ''}
                 </p>
 
                 {/* Ações */}
@@ -123,7 +123,7 @@ function Home() {
                     >
                       <ThumbsUp className="w-5 h-5" />
                       <span className="text-sm font-medium relative top-0.5">
-                        {item.likes_count}
+                        {item.likes_count || 0}
                       </span>
                     </button>
                     <button
@@ -133,7 +133,7 @@ function Home() {
                     >
                       <MessageCircle className="w-5 h-5" />
                       <span className="text-sm font-medium relative top-0.5">
-{item.comments_count || 0}
+                        {item.comments_count || 0}
                       </span>
                     </button>
                     <button
@@ -155,3 +155,4 @@ function Home() {
 }
 
 export default Home;
+
