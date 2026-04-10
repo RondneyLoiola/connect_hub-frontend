@@ -25,7 +25,7 @@ function Home() {
       if (userInfo.user) {
         try {
           const response = await api.get('/me/liked-posts');
-          const likedIds = new Set((response.data || []).map(post => post.id));
+          const likedIds = new Set((response.data || []).map(post => post._id));
           setLikedPosts(likedIds);
         } catch (error) {
           console.log(error);
@@ -50,13 +50,13 @@ function Home() {
           return newSet;
         });
         setPosts(prev => prev.map(post =>
-          post.id === postId ? { ...post, likes_count: post.likes_count - 1 } : post
+          post._id === postId ? { ...post, likes_count: post.likes_count - 1 } : post
         ));
       } else {
         await api.post(`/posts/${postId}/like`);
         setLikedPosts(prev => new Set([...prev, postId]));
         setPosts(prev => prev.map(post =>
-          post.id === postId ? { ...post, likes_count: post.likes_count + 1 } : post
+          post._id === postId ? { ...post, likes_count: post.likes_count + 1 } : post
         ));
       }
     } catch (error) {
@@ -68,16 +68,17 @@ function Home() {
     <section className="height-auto py-16 p-4">
       <div className="flex flex-col justify-center gap-12 items-center h-full">
         {posts.map((item) => (
-          <div key={item.id}>
+          console.log(item),
+          <div key={item._id}>
             <div 
             className="md:w-[450px] w-[350px] bg-[#1F2937] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1"
 
             >
               {/* Imagem do Post */}
-              <div className="relative overflow-hidden h-[400px] bg-gray-900/60" onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })} >
+              <div className="relative overflow-hidden h-[400px] bg-gray-900/60" onClick={() => navigate(`/buscar/usuario/post/${item._id}`, { state: { post: item } })} >
                 <img
                   className="w-full h-full  object-contain transition-transform duration-500 group-hover:scale-105"
-                  src={item.url}
+                  src={item.path}
                   alt="post-imagem"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -114,9 +115,9 @@ function Home() {
                   <div className="flex gap-4 mt-4">
                     <button
                       type="button"
-                      onClick={() => handleLike(item.id)}
+                      onClick={() => handleLike(item._id)}
                       className={`flex items-center gap-1.5 transition-colors ${
-                        likedPosts.has(item.id)
+                        likedPosts.has(item._id)
                           ? 'text-blue-400 hover:text-blue-600'
                           : 'text-gray-500 hover:text-blue-400'
                       }`}
@@ -129,7 +130,7 @@ function Home() {
                     <button
                       type="button"
                       className="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 transition-colors"
-                      onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })}
+                      onClick={() => navigate(`/buscar/usuario/post/${item._id}`, { state: { post: item } })}
                     >
                       <MessageCircle className="w-5 h-5" />
                       <span className="text-sm font-medium relative top-0.5">

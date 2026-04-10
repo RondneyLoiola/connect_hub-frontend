@@ -30,7 +30,7 @@ function PostDetails(){
 
     const getComments = async () => {
         try {
-            const {data} = await api.get(`/posts/${post.id}/comments`)
+            const {data} = await api.get(`/posts/${post._id}/comments`)
             setComments(data)
         } catch (error) {
             console.error(error)
@@ -46,7 +46,7 @@ function PostDetails(){
         if (!newComment.trim()) return;
 
         try {
-            await api.post(`/posts/${post.id}/comments`, { content: newComment });
+            await api.post(`/posts/${post._id}/comments`, { content: newComment });
             setNewComment('');
             getComments(); 
         } catch (error) {
@@ -67,7 +67,7 @@ function PostDetails(){
                             <div className="relative overflow-hidden h-[400px] bg-gray-900/60">
                                 <img
                                     className="w-full h-full object-contain"
-                                    src={post.url}
+                                    src={post.path}
                                     alt="post-imagem"
                                 />
                             </div>

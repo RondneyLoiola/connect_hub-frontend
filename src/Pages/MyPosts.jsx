@@ -9,7 +9,7 @@ function MyPosts() {
   const [posts, setPosts] = useState([]);
   const { userInfo } = useUser();
 
-  const userId = userInfo.user?.user?.id;
+  const userId = userInfo.user?.user?._id;
 
   useEffect(() => {
     const getPosts = async () => {
@@ -35,12 +35,12 @@ function MyPosts() {
             posts.map((post) => (
               <div
                 className=" relative aspect-square group cursor-pointer overflow-hidden"
-                key={post.id}
-                onClick={() => navigate(`/buscar/usuario/post/${post.id}`, { state: { post: post } })}
+                key={post._id}
+                onClick={() => navigate(`/buscar/usuario/post/${post._id}`, { state: { post: post } })}
               >
                 <img
-                  src={post.url}
-                  alt={post.id}
+                  src={post.path}
+                  alt={post._id}
                   className="border-2 rounded-sm border-gray-600 md:w-[300px] w-[250px] h-full object-contain"
                 />
               </div>

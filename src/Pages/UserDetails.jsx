@@ -65,7 +65,7 @@ function UserDetails() {
                   onClick={() => navigate(`/buscar/usuario/post/${post._id}`, { state: { post: post } })}
                 >
                   <img
-                    src={post.url}
+                    src={post.path}
                     alt={post._id}
                     className="border-2 rounded-sm border-gray-600 md:w-[300px] w-[250px] h-full object-contain"
                   />

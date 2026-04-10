@@ -31,7 +31,7 @@ function Liked() {
 
         try {
             await api.delete(`/posts/${postId}/like`);
-            setLikedPosts(prev => prev.filter(post => post.id !== postId));
+            setLikedPosts(prev => prev.filter(post => post._id !== postId));
         } catch (error) {
             console.log(error);
         }
@@ -51,10 +51,10 @@ function Liked() {
                             <div 
                             className="md:w-[450px] w-[350px] bg-[#1F2937] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1">
                                 {/* Imagem do Post */}
-                                <div className="relative overflow-hidden h-[400px] bg-gray-900/60" onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })}>
+                                <div className="relative overflow-hidden h-[400px] bg-gray-900/60" onClick={() => navigate(`/buscar/usuario/post/${item._id}`, { state: { post: item } })}>
                                     <img
                                         className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                                        src={item.url}
+                                        src={item.path}
                                         alt="post-imagem"
                                     />
                                     <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -99,7 +99,7 @@ function Liked() {
                                                     {item.likes_count}
                                                 </span>
                                             </button>
-                                            <div className="flex items-center gap-1.5 text-gray-500" onClick={() => navigate(`/buscar/usuario/post/${item.id}`, { state: { post: item } })}>
+                                            <div className="flex items-center gap-1.5 text-gray-500" onClick={() => navigate(`/buscar/usuario/post/${item._id}`, { state: { post: item } })}>
                                                 <MessageCircle className="w-5 h-5 hover:text-blue-400" />
                                                 <span className="text-sm font-medium relative top-0.5">
 {item.comments_count || 0}
