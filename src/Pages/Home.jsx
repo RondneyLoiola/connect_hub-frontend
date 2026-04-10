@@ -68,7 +68,6 @@ function Home() {
     <section className="height-auto py-16 p-4">
       <div className="flex flex-col justify-center gap-12 items-center h-full">
         {posts.map((item) => (
-          console.log(item),
           <div key={item._id}>
             <div 
             className="md:w-[450px] w-[350px] bg-[#1F2937] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1"

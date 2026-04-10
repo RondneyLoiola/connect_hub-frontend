@@ -9,7 +9,7 @@ function MyPosts() {
   const [posts, setPosts] = useState([]);
   const { userInfo } = useUser();
 
-  const userId = userInfo.user?.user?._id;
+  const userId = userInfo.user?.user?.id;
 
   useEffect(() => {
     const getPosts = async () => {
